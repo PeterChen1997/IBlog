@@ -1,0 +1,98 @@
+/* reset the bootstrap */
+.list-group {
+}
+.list-group-item {
+  border: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+.main {
+  margin-top: 3rem;
+}
+
+.jumbotron-header {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  background-color: #fff;
+}
+
+#logo {
+  animation: rotation 30s infinite linear;
+}
+
+@keyframes rotation {
+  from {
+      transform: rotate(0deg);
+  }
+  to {
+      transform: rotate(359deg);
+  }
+}
+
+
+/* 小于570px,不显示云 */
+@media screen and (min-width: 570px) {
+  .cloud {
+    height: 110px;
+  } 
+  #cloud1 {
+    vertical-align: bottom;
+    animation: fadeInLeft 2s 0s 1;
+  }
+  #cloud2{
+    animation: fadeInRight 2s 0s 1;
+  }
+}
+@media screen and (max-width: 570px) {
+  .cloud {
+    display: none;
+  }
+}
+
+
+@keyframes fadeInLeft {
+  0% { 
+    opacity: 0;
+    transform: translateX(-20%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0%);
+  }
+}
+@keyframes fadeInRight {
+  0% { 
+    opacity: 0;
+    transform: translateX(20%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0%);
+  }
+}
+
+.article-item {
+  color: var(--gray);
+}
+
+.article-item a {
+  color: #4E5253;
+}
+
+.footer {
+  margin-top: 2rem;
+  padding: 2rem 0;
+  border-top: 1px solid #e7e7e7;
+}
+
+#iframe {
+  margin-bottom: -5px;
+  margin-left: 5px;
+}
