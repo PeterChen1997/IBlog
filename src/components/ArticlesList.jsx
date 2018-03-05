@@ -25,29 +25,29 @@ class ArticlesList extends Component {
 
   getArticles = (type) => {
     this.setState({ isLoading: true })
-    
+
     axios
       .get(`${config.url}/articles`)
       .then(res => {
         this.setState({ isLoading: false })
-        if(type === "new") {
+        if (type === "new") {
           let articles = res.data.length > 4 ? res.data.reverse().slice(0, 5) : res.data.reverse()
 
-          this.setState({ 
+          this.setState({
             articles,
             title: '最新文章'
           })
-        } else if(type === "all") {
+        } else if (type === "all") {
           let articles = res.data
 
-          this.setState({ 
+          this.setState({
             articles,
             title: '文章列表'
           })
         }
-        
+
       })
-    
+
   }
 
   renderTap = (tagsArr) => {
@@ -65,13 +65,13 @@ class ArticlesList extends Component {
           <ListGroupItem>
             <Link to={`/articles/${article._id}`}><h3>{article.title}</h3></Link>
             <p>{article.desc.length > 80 ? article.desc.slice(0, 81) + '...' : article.desc}</p>
-            
-            <div style={{display: 'flex', justifyContent: 'space-between'}}>
+
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
               <p><i className="fa fa-tag" /> 标签：{this.renderTap(article.topic)}</p>
-              <p><i className="fa fa-calendar-times-o" /> 发布日期：{article.date.slice(0,10)}</p>
+              <p><i className="fa fa-calendar-times-o" /> 发布日期：{article.date.slice(0, 10)}</p>
               {/* <p><i className="fa fa-book" /> 浏览量：{article.count}</p>  */}
             </div>
-            
+
           </ListGroupItem>
         </div>
       )
@@ -80,21 +80,47 @@ class ArticlesList extends Component {
 
   renderLoading = () => {
     return (
-      <h3>Loading...</h3>
+      <div>
+        <div className="article-item" key={1} style={{ backgroundColor: "#898989",lineHeight: 2 }}>
+          <ListGroupItem>
+            <h3>________</h3>
+            <p>________________________________</p>
+
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <p><i className="fa fa-tag" /> ________</p>
+              <p><i className="fa fa-calendar-times-o" /> ________</p>
+              {/* <p><i className="fa fa-book" /> 浏览量：{article.count}</p>  */}
+            </div>
+          </ListGroupItem>
+        </div>
+        <div className="article-item" key={2} style={{ backgroundColor: "#898989",lineHeight: 2 }}>
+          <ListGroupItem>
+            <h3>________</h3>
+            <p>________________________________</p>
+
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <p><i className="fa fa-tag" /> ________</p>
+              <p><i className="fa fa-calendar-times-o" /> ________</p>
+              {/* <p><i className="fa fa-book" /> 浏览量：{article.count}</p>  */}
+            </div>
+          </ListGroupItem>
+        </div>
+      </div>
+
     )
   }
 
   render() {
     const renderMore = this.props.type === 'new' ? (
-      <div style={{marginTop: '20px', marginBottom: '20px', textAlign: 'center'}}>
-        <Link to="/list" style={{color: 'gray'}}><h4>>> 文章列表  </h4></Link>
+      <div style={{ marginTop: '20px', marginBottom: '20px', textAlign: 'center' }}>
+        <Link to="/list" style={{ color: 'gray' }}><h4>>> 文章列表  </h4></Link>
       </div>
     ) : ''
-    
+
     return (
       <Col tag="div" sm={this.props.sm}>
         <h4>{this.state.title}</h4>
-        <hr/>
+        <hr />
         <ListGroup>
           {this.state.isLoading ? this.renderLoading() : this.renderArticles()}
         </ListGroup>
