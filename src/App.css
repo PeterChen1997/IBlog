@@ -1,4 +1,10 @@
 /* reset the bootstrap */
+.react-markdown img {
+  width: 100%;
+}
+.react-markdown a {
+  word-wrap: break-word;
+}
 .list-group {
 }
 .list-group-item {

@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import { Container, Row, Col } from 'reactstrap'
-import { UnicodeToAscii } from '../helper'
 import ReactMarkdown from 'react-markdown'
 import config from '../config'
 
@@ -14,12 +13,8 @@ class ArticleItem extends Component {
     }
   }
 
-  componentWillMount() {
-    this.getArticleItem()
-  }
-
   componentDidMount() {
-    // this.updateCount()
+    this.getArticleItem()
   }
 
   getArticleItem = () => {
@@ -61,7 +56,7 @@ class ArticleItem extends Component {
           </Col>
         </Row>
         <Row>
-          <Col>
+          <Col className="react-markdown">
             <ReactMarkdown source={this.state.article.content} />
           </Col>
         </Row>
