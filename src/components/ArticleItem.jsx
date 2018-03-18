@@ -25,13 +25,13 @@ class ArticleItem extends Component {
   getArticleItem = () => {
     let articleId = this.props.match.params.id
     axios
-      .get(`${config.url}/articles/${articleId}`)
+      .get(`${config.url}/articles/detail/${articleId}`)
       .then(res => {
         console.log(res.data)
         this.setState({ 
           article: {
             ...res.data,
-            content: UnicodeToAscii(res.data.content)
+            content: res.data.content
           }
         })
       })

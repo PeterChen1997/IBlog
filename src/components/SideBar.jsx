@@ -26,7 +26,7 @@ class SideBar extends Component {
         const topic = []
         articles
           .map(article => {
-            topic.push(...article.topic)
+            topic.push(...article.topic.split('-'))
           })
         tags = topic.reduce(function(obj, tag) {
           if(!obj[tag]) {
@@ -44,7 +44,7 @@ class SideBar extends Component {
   renderTags = (tags) => {
     const renderTags = Object.keys(tags).map(index => (
       <NavItem key={index}>
-        <NavLink tag={Link} to={`/tags/${index}`}>
+        <NavLink onClick={() => {this.props.resetTags(index)}}>
           {index} <Badge color="info">{tags[index]}</Badge>
         </NavLink>
       </NavItem>
